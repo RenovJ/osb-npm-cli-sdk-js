@@ -1,11 +1,9 @@
-const OASISBlocAPI = require('oasisbloc_cli_sdk')
+const OASISBlocAPI = require('osb-cli-sdk')
 const config = require('./config/dev.conf')
 const fs = require('fs');
 
 const c = {
-  protocol: config.CHAIN_PROTOCOL,
-  ipAddress: config.CHAIN_IPADDR,
-  port: config.CHAIN_PORT,
+  chainAccessPoint: `${config.CHAIN_PROTOCOL}://${config.CHAIN_IPADDR}:${config.CHAIN_PORT}`,
   chainId: config.CHAIN_ID,
   dataTradeContractName: config.DATA_TRADE_CONTRACT_NAME,
   privateKey: config.ACCOUNT_PRIVATE_KEY,
@@ -17,20 +15,13 @@ const textData = 'abcd'
 const fileDataPath = '/home/changhee/OASISBloc/testdata'
 //const dataBuffer = Buffer.from(textData)
 const dataBuffer = fs.readFileSync(fileDataPath)
-const datatype = 'text'
-const datatypename = 'type1'
-const price = '99.0000'
+const datatypename = 'mobility'
+const price = '0.0002'
 const detailFields = [
-                      'abcd',
-                      'data2',
-                      'data3',
-                      'data4',
-                      'data5',
-                      'data6',
-                      'data7',
-                      'data8',
-                      'data9',
-                      'data0',
+                      'Audi',
+                      'A6',
+                      '2014',
+                      '2019-10-15 09:00 ~',
                       ]
 const period = 2
 const decryptKeyList = [
@@ -43,12 +34,15 @@ const decryptKeyList = [
                         //'5KAV6zT5P8wotJyaPsjePub8NzE6w1ModGR7dKDTHRbXYL6QHNn',
                         //'5J7YRw9Fxq6vaTmrhicDBZBtYpmsJYuPb5UFLaZ2m2GhBkDDW8d',
                         ]
-osb.registerData(dataBuffer, datatype, datatypename, price, detailFields, period, decryptKeyList)
+
+osb.setEventCallback(console.log)
+
+//osb.registerData(dataBuffer, datatypename, detailFields, price, period, decryptKeyList)
 
 const buyerPrivateKey = config.BUYER_PRIVATE_KEY
-const data_id = 1
+const data_id = 96
 
 //osb.setAuthForContract()
 //const returnedData = osb.buyData(data_id, buyerPrivateKey)
-//osb.test(dataBuffer, data_id, buyerPrivateKey)
+osb.test(dataBuffer, data_id, buyerPrivateKey)
 
