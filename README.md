@@ -55,6 +55,121 @@ const osbClient = new OASIS_CLI(config)
 osbClient.setAuthForContract()
 ```
 
+
+### showDatatypeList
+
+Showing available data type list
+
+```javascript
+osbClient.showDatatypeList(limit, reverse, lowerBound, upperBound)
+```
+
+#### Parameters
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| limit | integer | Maximum length of list to return |
+| reverse | boolean | Iterate in reverse order |
+| lowerBound | integer | Lower bound value of key, defaults to first |
+| upperBound | integer | Upper bound value of key, defaults to last |
+
+#### Return values
+
+| Return value | Type | Description |
+| ------------ | ---- | ----------- |
+| datatypelist | Array | Data type list |
+
+### showDataList
+
+Showing data list
+
+```javascript
+osbClient.showDataList(limit, reverse, lowerBound, upperBound)
+```
+
+#### Parameters
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| limit | integer | Maximum length of list to return |
+| reverse | boolean | Iterate in reverse order |
+| lowerBound | integer | Lower bound value of key, defaults to first |
+| upperBound | integer | Upper bound value of key, defaults to last |
+
+#### Return values
+
+| Return value | Type | Description |
+| ------------ | ---- | ----------- |
+| datalist | Array | Data list |
+
+### showDataListByDatatype
+
+Showing data list of a data type
+
+```javascript
+osbClient.showDataListByDatatype(limit, reverse, datatypeName)
+```
+
+#### Parameters
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| limit | integer | Maximum length of list to return |
+| reverse | boolean | Iterate in reverse order |
+| datatypeName | string | Data type |
+
+#### Return values
+
+| Return value | Type | Description |
+| ------------ | ---- | ----------- |
+| datalist | Array | Data list |
+
+
+### showBuyhistoryListByBuyer
+
+Showing history of buying data of a user
+
+```javascript
+osbClient.showBuyhistoryListByBuyer(limit, reverse, buyerName)
+```
+
+#### Parameters
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| limit | integer | Maximum length of list to return |
+| reverse | boolean | Iterate in reverse order |
+| buyerName | string | User account name as a buyer to query |
+
+#### Return values
+
+| Return value | Type | Description |
+| ------------ | ---- | ----------- |
+| buyhistory | Array | A history of buying data of a user |
+
+### addDatatype
+
+Adding a data type
+
+```javascript
+osbClient.addDatatype(name, detailFieldNames)
+```
+
+#### Parameters
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| name | string | Data type name to add |
+| detailFieldNames | Array(string) | Field name list of metadata |
+
+#### Return values
+
+| Return value | Type | Description |
+| ------------ | ---- | ----------- |
+| txResultAddDatatype | Object | A result of adding data type |
+| datatypeRegistrationInfo | Object | Registration info of added data type  |
+
+
 ### registerData
 
 Registering a data to oasisbloc with encryption and fragmentation of data, and uploading data to data keeper's IDFS nodes
@@ -125,4 +240,5 @@ osbClient.requestData(dataid, buyid, buyerPrivateKey)
 | Return value | Type | Description |
 | ------------ | ---- | ----------- |
 | data | Buffer | The purchased data |
+
 
